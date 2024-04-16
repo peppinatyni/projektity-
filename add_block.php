@@ -11,7 +11,7 @@ if (!isset($_SESSION['user_id'])) {
 $servername = "mariadb.vamk.fi";
 $username = "e2203229";
 $password = "9kgEmcPsdPd";
-$dbname = "e2203229_database_two";
+$dbname = "e2203229_database_four";
 try {
     // luodaan yhteys tietokantaan (PDO-luokka)
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
