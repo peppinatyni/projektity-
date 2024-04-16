@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS blockchain (
     timestamp TEXT,
     previous_hash TEXT,
     current_hash TEXT,
-    data TEXT)
+    data TEXT,
+    anonymous_message TEXT)
     ";
 $pdo->exec($createTableQuery);
 
@@ -55,9 +56,10 @@ $blockchain = $stmt->fetchAll(PDO::FETCH_ASSOC);
 // luodaan genesis block
 if (count($blockchain) == 0) {
     $genesisBlock = array(
-        'sender' => 'Genesis',
-        'receiver' => 'First Block',
-        'amount' => 'Second Block',
+        'title' => 'Genesis',
+        'message' => 'First Block',
+        'gender' => 'Second Block',
+        'age' => 'Third Block',
         'timestamp' => time(),
         'previous_hash' => null,
         'hash' => '0 (genesis block)'
@@ -67,12 +69,14 @@ $blockchain[] = $genesisBlock;
 
 }
     // tarkistetaan, että tarvittavat kentät ovat olemassa
-    if (isset($_POST["sender"]) && isset($_POST["receiver"]) && isset($_POST["amount"])) {
+    if (isset($_POST["title"]) && isset($_POST["message"]) && isset($_POST["gender"]) && isset($_POST["age"])) {
 
         // haetaan lomakkeen tiedot
-        $sender = htmlspecialchars($_POST["sender"]);
-        $receiver = htmlspecialchars($_POST["receiver"]);
-        $amount = htmlspecialchars($_POST["amount"]);
+        $title = htmlspecialchars($_POST["title"]);
+        $message = htmlspecialchars($_POST["message"]);
+        $gender = htmlspecialchars($_POST["gender"]);
+        $age = htmlspecialchars($_POST["age"]);
+
 
         // haetaan edellisen lohkon hash
         $previousBlock = end($blockchain);
@@ -80,9 +84,10 @@ $blockchain[] = $genesisBlock;
 
         // luodaan uusi lohko
         $block = array(
-            'sender' => $sender,
-            'receiver' => $receiver,
-            'amount' => $amount,
+            'title' => $title,
+            'message' => $message,
+            'gender' => $gender,
+            'age' => $age,
             'timestamp' => time(),
             'previous_hash' => $previousHash
         );
@@ -93,15 +98,16 @@ $blockchain[] = $genesisBlock;
 
 // tallennetaan päivitetty lohkoketju tietokantaan
 foreach ($blockchain as $block) {
-    $sender = $block['sender'];
-    $receiver = $block['receiver'];
-    $amount = $block['amount'];
+    $title = $block['title'];
+    $message = $block['message'];
+    $gender = $block['gender'];
+    $age = $block['age'];
     $timestamp = $block['timestamp'];
     $previousHash = $block['previous_hash'];
     $hash = $block['hash'];
 
-    $insertBlockQuery = "INSERT INTO blockchain (timestamp, previous_hash, current_hash, data) 
-    VALUES ('$timestamp', '$previousHash', '$hash', '$sender-$receiver-$amount')";
+    $insertBlockQuery = "INSERT INTO blockchain (timestamp, previous_hash, current_hash, data, anonymous_message) 
+    VALUES ('$timestamp', '$previousHash', '$hash', '$gender-$age-$title', '$message')";
 
     try {
         $pdo->exec($insertBlockQuery);
@@ -110,17 +116,18 @@ foreach ($blockchain as $block) {
     }
 }
         // tulostetaan lohkoketju
-        echo '<h2>Financial Transactions</h2>';
+        echo "<h2>Anonymous Member Feedback on the Volume Organization's Event</h2>";
         echo '<table border="1">';
-        echo '<tr><th>Sender</th><th>Receiver</th><th>Amount</th><th>Timestamp</th><th>Hash</th><th>Previous Hash</th></tr>';
+        echo '<tr><th>Title</th><th>Message</th><th>Gender</th><th>Age</th><th>Timestamp</th><th>Hash</th><th>Previous Hash</th></tr>';
 
         // tulostetaan lohkot
         for ($i = 1; $i < count($blockchain); $i++) {
             $block = $blockchain[$i];
             echo '<tr>';
-            echo '<td>' . $block['sender'] . '</td>';
-            echo '<td>' . $block['receiver'] . '</td>';
-            echo '<td>' . $block['amount'] . '</td>';
+            echo '<td>' . $block['title'] . '</td>';
+            echo '<td>' . $block['message'] . '</td>';
+            echo '<td>' . $block['gender'] . '</td>';
+            echo '<td>' . $block['age'] . '</td>';
             echo '<td>' . date('Y-m-d H:i:s', $block['timestamp']) . '</td>';
             echo '<td>' . $block['hash'] . '</td>';
             echo '<td>' . $block['previous_hash'] . '</td>';

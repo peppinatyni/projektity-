@@ -74,21 +74,27 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
     <div>    
-        <h1>Money Transfer Blockchain Web App</h1>
+        <h1>Anonymous Member Feedback on the Volume Organization's Event</h1>
     </div>
     <div class="form-container">
         <form action="add_block.php" method="post">
             <div class="form-group">
-                <label for="sender">Sender:</label>
-                <input type="text" id="sender" name="sender" placeholder="Sender's name" required>
+                <label for="title">Feedback Title:</label>
+                <input type="text" id="title" name="title" placeholder="Title of your feedback" required>
             </div>
             <div class="form-group">
-                <label for="receiver">Receiver:</label>
-                <input type="text" id="receiver" name="receiver" placeholder="Receiver's name" required>
+                <label for="message">Your Feedback:</label>
+                <textarea id="message" name="message" placeholder="Your feedback" required></textarea>
             </div>
             <div class="form-group">
-                <label for="amount">Amount:</label>
-                <input type="text" id="amount" name="amount" placeholder="Euros" required>
+                <label for="gender">Your Gender:</label>
+                <input type="radio" name="gender" value="female" <?php if (isset($gender) && $gender=="female") echo "checked";?>>Female
+                <input type="radio" name="gender" value="male" <?php if (isset($gender) && $gender=="male") echo "checked";?>>Male
+                <input type="radio" name="gender" value="other" <?php if (isset($gender) && $gender=="other") echo "checked";?>>Other
+            </div>
+            <div class="form-group">
+                <label for="age">Your Age:</label>
+                <input type="number" id="age" name="age" placeholder="Your age" required>
             </div>
             <button type="submit">Submit</button>
             <p><span style="color:gray">You are logged in as <?php echo $_SESSION['username']; ?>, <a href="logout.php">logout.</a></span></p>
