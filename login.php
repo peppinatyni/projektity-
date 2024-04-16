@@ -1,19 +1,9 @@
-<?php
-session_start();
-
-// tarkistetaan, onko käyttäjä sisäänkirjautunut. ohjataan takaisin kirjautumissivulle jos ei ole sisäänkirjautunut
-if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
-    exit();
-}
-?>
-
 <!DOCTYPE html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Main Page</title>
+    <title>Login</title>
 
     <style>
         body {
@@ -74,25 +64,24 @@ if (!isset($_SESSION['user_id'])) {
 
 <body>
     <div>    
-        <h1>Money Transfer Blockchain Web App</h1>
+        <h1>Login to Web App</h1>
     </div>
     <div class="form-container">
-        <form action="add_block.php" method="post">
+        <form action="logs.php" method="post">
             <div class="form-group">
-                <label for="sender">Sender:</label>
-                <input type="text" id="sender" name="sender" placeholder="Sender's name" required>
+                <label for="email">Email:</label>
+                <input type="text" id="email" name="email" placeholder="Email address" required>
             </div>
             <div class="form-group">
-                <label for="receiver">Receiver:</label>
-                <input type="text" id="receiver" name="receiver" placeholder="Receiver's name" required>
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Password" required>
             </div>
-            <div class="form-group">
-                <label for="amount">Amount:</label>
-                <input type="text" id="amount" name="amount" placeholder="Euros" required>
-            </div>
-            <button type="submit">Submit</button>
-            <p><span style="color:gray">You are logged in as <?php echo $_SESSION['username']; ?>, <a href="logout.php">logout.</a></span></p>
+            <button type="login">Login</button>
         </form>
+        <p><span style="color:gray">Login or <a href="signup.php">create new account</a></span></p>
+    </div>
+    <div>
+        <h4>Please Login</h4>
     </div>
 </body>
 
