@@ -25,6 +25,7 @@ if (!isset($_SESSION['user_id'])) {
             flex-direction: column;
             justify-content: center;
             height: 100vh;
+            font-family: Arial;
         }
 
         .form-container {
@@ -53,7 +54,7 @@ if (!isset($_SESSION['user_id'])) {
         }
 
         button {
-            background-color: mediumslateblue;
+            background-color: gray;
             color: #fff;
             padding: 10px;
             border: none;
@@ -63,18 +64,18 @@ if (!isset($_SESSION['user_id'])) {
         }
 
         h1 {
-            color: mediumslateblue;
+            color: gray;
         }
 
         h4 {
-            color:  mediumslateblue;
+            color:  gray;
         }
     </style>
 </head>
 
 <body>
     <div>    
-        <h1>Anonymous Member Feedback on the Volume Organization's Event</h1>
+        <h1>Anonymous Feedback on the Organization's Event</h1>
     </div>
     <div class="form-container">
         <form action="add_block.php" method="post">
@@ -84,7 +85,7 @@ if (!isset($_SESSION['user_id'])) {
             </div>
             <div class="form-group">
                 <label for="message">Your Feedback:</label>
-                <textarea id="message" name="message" placeholder="Your feedback" required></textarea>
+                <textarea id="message" name="message" placeholder="How did we do?" required></textarea>
             </div>
             <div class="form-group">
                 <label for="gender">Your Gender:</label>

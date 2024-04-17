@@ -15,6 +15,7 @@
             flex-direction: column;
             justify-content: center;
             height: 100vh;
+            font-family: Arial;
         }
 
         .form-container {
@@ -43,7 +44,7 @@
         }
 
         button {
-            background-color: mediumslateblue;
+            background-color: gray;
             color: #fff;
             padding: 10px;
             border: none;
@@ -53,11 +54,11 @@
         }
 
         h1 {
-            color: mediumslateblue;
+            color: gray;
         }
 
         h4 {
-            color:  mediumslateblue;
+            color:  gray;
         }
     </style>
 </head>

@@ -15,6 +15,7 @@
             flex-direction: column;
             justify-content: center;
             height: 100vh;
+            font-family: Arial;
         }
 
         .form-container {
@@ -43,7 +44,7 @@
         }
 
         button {
-            background-color: mediumslateblue;
+            background-color: gray;
             color: #fff;
             padding: 10px;
             border: none;
@@ -53,18 +54,18 @@
         }
 
         h1 {
-            color: mediumslateblue;
+            color: gray;
         }
 
         h4 {
-            color:  mediumslateblue;
+            color:  gray;
         }
     </style>
 </head>
 
 <body>
     <div>    
-        <h1>Login to Web App</h1>
+        <h1>Login to Anonymous Feedback Form</h1>
     </div>
     <div class="form-container">
         <form action="logs.php" method="post">

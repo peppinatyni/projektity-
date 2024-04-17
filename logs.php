@@ -88,7 +88,7 @@ try {
         }
 
         button {
-            background-color: mediumslateblue;
+            background-color: gray;
             color: #fff;
             padding: 10px;
             border: none;
@@ -98,11 +98,11 @@ try {
         }
 
         h1 {
-            color: mediumslateblue;
+            color: gray;
         }
 
         h4 {
-            color:  mediumslateblue;
+            color:  gray;
         }
     </style>
 </head>
